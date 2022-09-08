@@ -3,6 +3,7 @@ import { spawnSync } from 'child_process';
 import { rmSync } from 'fs';
 import { join } from 'path';
 
+const adgJsPath = join(process.cwd(), 'dist/bin/adg.js');
 const outputDir = join(process.cwd(), 'tmp/e2e');
 
 beforeAll(() => {
@@ -14,7 +15,7 @@ beforeEach(() => {
 });
 
 test('show help and exit code 1', () => {
-  const result = spawnSync('node', ['dist/bin/adg.js'], { encoding: 'utf-8' });
+  const result = spawnSync('node', [adgJsPath], { encoding: 'utf-8' });
 
   expect(result.status).toBe(1);
   expect(result.stderr).toMatch('Usage: adg [options] [command]');
@@ -22,18 +23,16 @@ test('show help and exit code 1', () => {
 });
 
 test('generate api', () => {
-  const result = spawnSync(
-    'node',
-    ['dist/bin/adg.js', 'generate', 'api', outputDir],
-    { encoding: 'utf-8' }
-  );
+  const result = spawnSync('node', [adgJsPath, 'generate', 'api', outputDir], {
+    encoding: 'utf-8',
+  });
 
   expect(result.status).toBe(1);
   expect(result.stderr).toMatch('not implemented.');
 });
 
 test('minify', () => {
-  const result = spawnSync('node', ['dist/bin/adg.js', 'minify', outputDir], {
+  const result = spawnSync('node', [adgJsPath, 'minify', outputDir], {
     encoding: 'utf-8',
   });
 
