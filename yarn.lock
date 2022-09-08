@@ -453,7 +453,7 @@
   resolved "https://registry.yarnpkg.com/@swc/core-win32-x64-msvc/-/core-win32-x64-msvc-1.2.249.tgz#0b3eb647a285ec94d17230f13c3bf0299ef41913"
   integrity sha512-IxRvePerNYVJXr6lk0P09y1XAqPncMHWWvWm7p3CvTAfxEuiM5DqD5wtIbFMXfPSi1TTSkzAqBoH6Nushvgb3Q==
 
-"@swc/core@^1.2.172", "@swc/core@^1.2.248":
+"@swc/core@^1.2.172":
   version "1.2.248"
   resolved "https://registry.yarnpkg.com/@swc/core/-/core-1.2.248.tgz#2f0d8486901f121dddb96932de7eea365177c112"
   integrity sha512-/HQJT2BIT5fkf6I6vK5fS5SKf34QedBQQNf0A38xRIAFhQjLBVWECRFySqKijaFoIzRv9Ic4DI6XwusBNfPUyA==

@@ -63,5 +63,4 @@ jobs:
           RUST_BACKTRACE: full
         run: |
           yarn type-check
-          yarn swc src/bin/adg.ts
           yarn build
