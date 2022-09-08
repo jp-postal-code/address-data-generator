@@ -44,6 +44,23 @@ jobs:
       - name: Test
         run: yarn test
 
+  e2e:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [16]
+    steps:
+      - uses: actions/checkout@v3
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: 'yarn'
+      - name: Install node_modules
+        run: yarn --check-files --frozen-lockfile --non-interactive
+      - name: Test
+        run: yarn e2e
+
   build:
     runs-on: ubuntu-latest
     strategy:

@@ -2,4 +2,4 @@
 
 import { createProgram } from '@/lib/commands/create-program';
 
-createProgram();
+createProgram().parse();

@@ -1,0 +1,14 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`show help and exit code 1 1`] = `
+"Usage: adg [options] [command]
+
+Options:
+  -h, --help      display help for command
+
+Commands:
+  generate
+  minify <glob>
+  help [command]  display help for command
+"
+`;

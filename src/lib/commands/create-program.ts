@@ -8,5 +8,5 @@ export function createProgram() {
   program.addCommand(createGenerateCommand());
   program.addCommand(createMinifyCommand());
 
-  program.parseAsync();
+  return program;
 }
