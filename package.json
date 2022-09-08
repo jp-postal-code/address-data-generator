@@ -8,6 +8,9 @@
     "access": "public",
     "tag": "next"
   },
+  "bin": {
+    "adg": "bin/adg.js"
+  },
   "author": "shota <xyz.shotao@gmail.com>",
   "license": "MIT",
   "scripts": {
