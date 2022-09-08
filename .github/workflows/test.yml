@@ -59,6 +59,7 @@ jobs:
       - name: Install node_modules
         run: yarn --check-files --frozen-lockfile --non-interactive
       - name: Test
+        shell: bash
         run: |
           yarn type-check
           yarn build
