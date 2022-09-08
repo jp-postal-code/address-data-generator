@@ -2,6 +2,7 @@
 /dist
 /tmp
 /out-tsc
+tsconfig.tsbuildinfo
 
 # dependencies
 node_modules
