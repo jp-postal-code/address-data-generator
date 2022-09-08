@@ -7,7 +7,9 @@ const adgJsPath = join(process.cwd(), 'dist/bin/adg.js');
 const outputDir = join(process.cwd(), 'tmp/e2e');
 
 beforeAll(() => {
-  spawnSync('yarn', ['build']);
+  const result = spawnSync('yarn', ['build'], { encoding: 'utf-8' });
+  expect(result.status).toBe(0);
+  console.log(result.stdout);
 });
 
 beforeEach(() => {
