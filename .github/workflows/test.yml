@@ -58,7 +58,7 @@ jobs:
           cache: 'yarn'
       - name: Install node_modules
         run: yarn --check-files --frozen-lockfile --non-interactive
-      - name: Test
+      - name: E2E
         run: yarn e2e
 
   build:
@@ -75,7 +75,7 @@ jobs:
           cache: 'yarn'
       - name: Install node_modules
         run: yarn --check-files --frozen-lockfile --non-interactive
-      - name: Test
+      - name: Build
         env:
           RUST_BACKTRACE: full
         run: |
