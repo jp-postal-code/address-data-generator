@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json.schemastore.org/swcrc",
+  "jsc": {
+    "target": "es2022",
+    "baseUrl": ".",
+    "parser": {
+      "syntax": "typescript",
+      "tsx": true,
+      "decorators": false,
+      "dynamicImport": false
+    },
+    "paths": {
+      "@/*": ["src/*"]
+    }
+  },
+  "module": {
+    "type": "commonjs"
+  },
+  "isModule": true
+}

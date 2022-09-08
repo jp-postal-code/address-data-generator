@@ -1,0 +1,23 @@
+{
+  "compilerOptions": {
+    "rootDir": ".",
+    "baseUrl": ".",
+    "moduleResolution": "node",
+    "target": "es2022",
+    "module": "es2022",
+    "noEmit": true,
+    "strict": true,
+    "jsx": "preserve",
+    "lib": ["es2020"],
+    "types": ["node"],
+    "skipLibCheck": true,
+    "skipDefaultLibCheck": true,
+    "resolveJsonModule": true,
+    "esModuleInterop": true,
+    "incremental": true,
+    "paths": {
+      "@/*": ["src/*"]
+    }
+  },
+  "exclude": ["node_modules", "tmp"]
+}
