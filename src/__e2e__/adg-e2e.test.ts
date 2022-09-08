@@ -1,8 +1,9 @@
 import { test, beforeAll, beforeEach, expect } from '@jest/globals';
 import { spawnSync } from 'child_process';
 import { rmSync } from 'fs';
+import { join } from 'path';
 
-const outputDir = 'tmp/e2e';
+const outputDir = join(process.cwd(), 'tmp/e2e');
 
 beforeAll(() => {
   spawnSync('yarn', ['build']);
