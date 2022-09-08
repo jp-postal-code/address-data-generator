@@ -1,0 +1,14 @@
+{
+  "name": "@jp-postal-code/address-data-generator",
+  "description": "Generate japan address data",
+  "version": "0.0.1",
+  "repository": "git@github.com:jp-postal-code/address-data-generator.git",
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org"
+  },
+  "author": "shota <xyz.shotao@gmail.com>",
+  "license": "MIT",
+  "scripts": {},
+  "dependencies": {},
+  "devDependencies": {}
+}
