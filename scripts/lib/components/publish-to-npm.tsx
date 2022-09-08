@@ -1,7 +1,7 @@
 import { Box, Text } from 'ink';
 import React, { FC } from 'react';
 import { executePublishToNpm } from '../executors/execute-publish-to-npm';
-import { usePublishToNpm } from './use-publish-to-npm';
+import { usePublishToNpm } from '../hooks/use-publish-to-npm';
 
 interface Props {
   args: Parameters<typeof executePublishToNpm>[0]['args'];
