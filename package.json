@@ -13,6 +13,7 @@
   "scripts": {
     "build": "spack",
     "type-check": "tsc",
+    "test": "echo 'setup test later.'",
     "lint": "eslint . --ext ts --ext tsx --ext js",
     "lint:fix": "yarn lint --fix",
     "format": "prettier --write .",
