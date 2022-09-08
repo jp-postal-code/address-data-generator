@@ -8,8 +8,10 @@ const outputDir = join(process.cwd(), 'tmp/e2e');
 
 beforeAll(() => {
   const result = spawnSync('yarn', ['build'], { encoding: 'utf-8' });
+
+  console.log(result.stdout, result.stderr);
+
   expect(result.status).toBe(0);
-  console.log(result.stdout);
 });
 
 beforeEach(() => {
