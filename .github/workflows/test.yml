@@ -45,10 +45,9 @@ jobs:
         run: yarn test
 
   build:
-    runs-on: ${{ matrix.os }}
+    runs-on: ubuntu-latest
     strategy:
       matrix:
-        os: [macos-latest, windows-latest, ubuntu-latest]
         node-version: [16]
     steps:
       - uses: actions/checkout@v3
