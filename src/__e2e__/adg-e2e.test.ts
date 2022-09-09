@@ -1,17 +1,35 @@
 import { test, beforeAll, beforeEach, expect } from '@jest/globals';
 import { spawnSync } from 'child_process';
-import { rmSync } from 'fs';
+import { mkdirSync, rmSync, writeFileSync } from 'fs';
 import { join } from 'path';
 
-const adgJsPath = join(process.cwd(), 'dist/bin/adg.js');
-const outputDir = join(process.cwd(), 'tmp/e2e');
+const distDir = join(process.cwd(), 'dist');
+const workDir = join(process.cwd(), 'tmp/e2e');
+const outputDir = join(workDir, 'output');
 
 beforeAll(() => {
-  const result = spawnSync('yarn', ['build'], { encoding: 'utf-8' });
+  const buildResult = spawnSync('yarn', ['build'], { encoding: 'utf-8' });
+  console.log(buildResult.output.join(''));
+  // ビルドに成功しているかチェック
+  expect(buildResult.status).toBe(0);
 
-  console.log(result.stdout, result.stderr);
-
-  expect(result.status).toBe(0);
+  // インストールする
+  rmSync(workDir, { force: true, recursive: true });
+  mkdirSync(workDir, { recursive: true });
+  writeFileSync(
+    join(workDir, 'package.json'),
+    JSON.stringify({
+      name: 'address-data-generator-e2e',
+      license: 'none',
+    }),
+    'utf-8'
+  );
+  const yarnAddResult = spawnSync('yarn', ['add', distDir], {
+    encoding: 'utf-8',
+    cwd: workDir,
+  });
+  expect(yarnAddResult.output.join(''));
+  expect(yarnAddResult.status).toBe(0);
 });
 
 beforeEach(() => {
@@ -19,7 +37,7 @@ beforeEach(() => {
 });
 
 test('show help and exit code 1', () => {
-  const result = spawnSync('node', [adgJsPath], { encoding: 'utf-8' });
+  const result = runAdg();
 
   expect(result.status).toBe(1);
   expect(result.stderr).toMatch('Usage: adg [options] [command]');
@@ -27,19 +45,22 @@ test('show help and exit code 1', () => {
 });
 
 test('generate api', () => {
-  const result = spawnSync('node', [adgJsPath, 'generate', 'api', outputDir], {
-    encoding: 'utf-8',
-  });
+  const result = runAdg(['generate', 'api', outputDir]);
 
   expect(result.status).toBe(1);
   expect(result.stderr).toMatch('not implemented.');
 });
 
 test('minify', () => {
-  const result = spawnSync('node', [adgJsPath, 'minify', outputDir], {
-    encoding: 'utf-8',
-  });
+  const result = runAdg(['minify']);
 
   expect(result.status).toBe(1);
   expect(result.stderr).toMatch('not implemented.');
 });
+
+function runAdg(args: string[] = []) {
+  return spawnSync('yarn', ['adg', ...args], {
+    encoding: 'utf-8',
+    cwd: workDir,
+  });
+}

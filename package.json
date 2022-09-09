@@ -14,21 +14,20 @@
   "author": "shota <xyz.shotao@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "build": "spack",
+    "prebuild": "node -r @swc-node/register ./scripts/prebuild.ts",
+    "build": "swc src/{bin,lib} -d dist",
+    "postbuild": "node -r @swc-node/register ./scripts/postbuild.ts",
     "type-check": "tsc",
     "test": "jest",
     "e2e": "jest -c jest-e2e.config.js",
     "lint": "eslint . --ext ts --ext tsx --ext js",
     "lint:fix": "yarn lint --fix",
     "format": "prettier --write .",
-    "prepare": "husky install",
-    "publish-to-npm": "node -r @swc-node/register ./scripts/publish-to-npm.tsx"
+    "prepare": "husky install"
   },
   "dependencies": {
     "commander": "9.4.0",
-    "fast-glob": "3.2.11",
-    "ink": "3.2.0",
-    "react": "18.2.0"
+    "fast-glob": "3.2.11"
   },
   "devDependencies": {
     "@commitlint/cli": "17.1.2",

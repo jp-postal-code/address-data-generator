@@ -2,9 +2,9 @@
   "compilerOptions": {
     "rootDir": ".",
     "baseUrl": ".",
-    "moduleResolution": "node",
+    "moduleResolution": "NodeNext",
     "target": "es2022",
-    "module": "es2022",
+    "module": "NodeNext",
     "noEmit": true,
     "strict": true,
     "jsx": "preserve",
