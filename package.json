@@ -15,7 +15,7 @@
   "license": "MIT",
   "scripts": {
     "prebuild": "node -r @swc-node/register ./scripts/prebuild.ts",
-    "build": "swc src/{bin,lib} -d dist",
+    "build": "swc src/bin src/lib -d dist",
     "postbuild": "node -r @swc-node/register ./scripts/postbuild.ts",
     "type-check": "tsc",
     "test": "jest",
