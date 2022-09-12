@@ -8,6 +8,7 @@
     "access": "public",
     "tag": "next"
   },
+  "type": "commonjs",
   "bin": {
     "adg": "bin/adg.js"
   },
@@ -26,8 +27,12 @@
     "prepare": "husky install"
   },
   "dependencies": {
+    "@supercharge/promise-pool": "^2.3.2",
     "commander": "9.4.0",
-    "fast-glob": "3.2.12"
+    "csv-parse": "^5.3.0",
+    "fast-glob": "3.2.12",
+    "iconv-lite": "^0.6.3",
+    "jszip": "^3.10.1"
   },
   "devDependencies": {
     "@commitlint/cli": "17.1.2",
