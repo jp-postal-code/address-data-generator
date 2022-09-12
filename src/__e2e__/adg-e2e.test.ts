@@ -1,5 +1,6 @@
 import { test, beforeAll, beforeEach, expect } from '@jest/globals';
 import { spawnSync } from 'child_process';
+import fastGlob from 'fast-glob';
 import { mkdirSync, rmSync, writeFileSync } from 'fs';
 import { join } from 'path';
 
@@ -8,11 +9,6 @@ const workDir = join(process.cwd(), 'tmp/e2e');
 const outputDir = join(workDir, 'output');
 
 beforeAll(() => {
-  const buildResult = spawnSync('yarn', ['build'], { encoding: 'utf-8' });
-  console.log(buildResult.output.join(''));
-  // ビルドに成功しているかチェック
-  expect(buildResult.status).toBe(0);
-
   // インストールする
   rmSync(workDir, { force: true, recursive: true });
   mkdirSync(workDir, { recursive: true });
@@ -44,12 +40,17 @@ test('show help and exit code 1', () => {
   expect(result.stderr).toMatchSnapshot();
 });
 
-test('generate api', () => {
+test('generate api', async () => {
   const result = runAdg(['generate', 'api', outputDir]);
 
-  expect(result.status).toBe(1);
-  expect(result.stderr).toMatch('not implemented.');
-});
+  expect(result.status).toBe(0);
+
+  const paths = await fastGlob('**/*.json', {
+    cwd: outputDir,
+  });
+
+  expect(paths.length).toBeGreaterThan(0);
+}, 60000);
 
 test('minify', () => {
   const result = runAdg(['minify']);

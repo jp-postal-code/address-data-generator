@@ -20,6 +20,7 @@
     "postbuild": "node -r @swc-node/register ./scripts/postbuild.ts",
     "type-check": "tsc",
     "test": "jest",
+    "pree2e": "yarn build",
     "e2e": "jest -c jest-e2e.config.js",
     "lint": "eslint . --ext ts --ext tsx --ext js",
     "lint:fix": "yarn lint --fix",
