@@ -3,8 +3,9 @@ import { createPostalCodeAddressesMap } from '@/lib/generate/create-postal-code-
 import { downloadKenAllZip } from '@/lib/generate/download-ken-all-zip';
 import { readKenAllRecord } from '@/lib/generate/read-ken-all-record';
 import { writeAddressesJson } from '@/lib/generate/write-addresses-json';
+import { makeTempDir } from '@/lib/utils/make-temp-dir';
 import { unzip } from '@/lib/utils/unzip';
-import { mkdtemp, rm } from 'fs/promises';
+import { rm } from 'fs/promises';
 import { join } from 'path';
 import { Action } from '../../types/action';
 
@@ -20,7 +21,7 @@ export const apiAction: Action<[string], Options> = async (
   distPath,
   { pretty }
 ) => {
-  const tempDir = await mkdtemp('adg');
+  const tempDir = await makeTempDir();
 
   try {
     const kenAllZipPath = join(tempDir, 'ken_all.zip');

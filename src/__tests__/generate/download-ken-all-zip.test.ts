@@ -3,13 +3,14 @@ import { beforeEach, afterEach, test, expect, jest } from '@jest/globals';
 import { readFile } from 'fs/promises';
 import https from 'https';
 import { IncomingMessage } from 'http';
-import { mkdtempSync, rmSync } from 'fs';
 import { join } from 'path';
+import { makeTempDir } from '@/lib/utils/make-temp-dir';
+import { rmSync } from 'fs';
 
 let workDir: string;
 
-beforeEach(() => {
-  workDir = mkdtempSync('adg-test');
+beforeEach(async () => {
+  workDir = await makeTempDir();
 });
 
 afterEach(() => {

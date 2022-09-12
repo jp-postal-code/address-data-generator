@@ -1,15 +1,16 @@
 import { KEN_ALL_CSV_FILENAME } from '@/lib/constants';
 import { readKenAllRecord } from '@/lib/generate/read-ken-all-record';
+import { makeTempDir } from '@/lib/utils/make-temp-dir';
 import { afterEach, beforeEach, expect, test } from '@jest/globals';
-import { mkdtempSync, rmSync } from 'fs';
+import { rmSync } from 'fs';
 import { writeFile } from 'fs/promises';
 import { encode } from 'iconv-lite';
 import { join } from 'path';
 
 let workDir: string;
 
-beforeEach(() => {
-  workDir = mkdtempSync('adg-test');
+beforeEach(async () => {
+  workDir = await makeTempDir();
 });
 
 afterEach(() => {

@@ -1,13 +1,14 @@
+import { makeTempDir } from '@/lib/utils/make-temp-dir';
 import { writeJsonFile } from '@/lib/utils/write-json-file';
 import { afterEach, beforeEach, expect, test } from '@jest/globals';
-import { mkdtempSync, rmSync } from 'fs';
+import { rmSync } from 'fs';
 import { readFile } from 'fs/promises';
 import { join } from 'path';
 
 let workDir: string;
 
-beforeEach(() => {
-  workDir = mkdtempSync('adg-test');
+beforeEach(async () => {
+  workDir = await makeTempDir();
 });
 
 afterEach(() => {
