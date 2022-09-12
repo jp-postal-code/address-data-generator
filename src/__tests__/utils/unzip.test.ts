@@ -27,4 +27,4 @@ test('unzip', async () => {
     KEN_ALL_CSV_FILENAME,
     'ken-all.zip',
   ]);
-});
+}, 30000);
