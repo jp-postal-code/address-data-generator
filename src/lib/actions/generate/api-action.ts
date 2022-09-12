@@ -1,4 +1,4 @@
-import { Action } from '../action';
+import { Action } from '../../types/action';
 
 interface Options {
   pretty: boolean;
