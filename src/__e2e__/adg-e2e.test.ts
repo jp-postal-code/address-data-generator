@@ -16,7 +16,7 @@ beforeAll(() => {
     join(workDir, 'package.json'),
     JSON.stringify({
       name: 'address-data-generator-e2e',
-      license: 'none',
+      license: 'MIT',
     }),
     'utf-8'
   );
@@ -24,7 +24,6 @@ beforeAll(() => {
     encoding: 'utf-8',
     cwd: workDir,
   });
-  expect(yarnAddResult.output.join(''));
   expect(yarnAddResult.status).toBe(0);
 });
 
@@ -41,8 +40,11 @@ test('show help and exit code 1', () => {
 });
 
 test('generate api', async () => {
-  const result = runAdg(['generate', 'api', outputDir]);
+  const result = runAdg(['generate', 'api', outputDir], {
+    maxBuffer: 1024 * 1024 * 10,
+  });
 
+  expect(result.output.join('')).toMatch(`[SUCCESS] Write addresses json`);
   expect(result.status).toBe(0);
 
   const paths = await fastGlob('**/*.json', {
@@ -59,9 +61,13 @@ test('minify', () => {
   expect(result.stderr).toMatch('not implemented.');
 });
 
-function runAdg(args: string[] = []) {
+function runAdg(
+  args: string[] = [],
+  options?: Parameters<typeof spawnSync>['2']
+) {
   return spawnSync('yarn', ['adg', ...args], {
     encoding: 'utf-8',
     cwd: workDir,
+    ...options,
   });
 }
