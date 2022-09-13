@@ -19,6 +19,8 @@ export function fetch(url: string): Promise<Response> {
         return;
       }
 
+      res.pause();
+
       resolve({
         statusCode: res.statusCode,
         statusMessage: res.statusMessage,
@@ -43,5 +45,7 @@ function bodyFactory(response: IncomingMessage): Response['body'] {
         resolve(Buffer.concat(chunks));
       });
       response.on('error', reject);
+
+      response.resume();
     });
 }

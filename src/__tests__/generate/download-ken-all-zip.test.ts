@@ -36,6 +36,12 @@ test('throws error if status code is not 200', async () => {
     callback({
       statusCode: 500,
       statusMessage: 'INTERNAL SERVER ERROR',
+      pause() {
+        return this;
+      },
+      resume() {
+        return this;
+      },
     } as IncomingMessage);
 
     return {
