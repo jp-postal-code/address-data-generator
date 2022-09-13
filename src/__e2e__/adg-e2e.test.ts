@@ -39,27 +39,33 @@ test('show help and exit code 1', () => {
   expect(result.stderr).toMatchSnapshot();
 });
 
-test('generate api', async () => {
-  const result = runAdg(['generate', 'api', outputDir], {
-    maxBuffer: 1024 * 1024 * 10,
-  });
+test(
+  'generate api',
+  async () => {
+    const generateApiResult = runAdg(['generate', 'api', outputDir], {
+      maxBuffer: 1024 * 1024 * 10,
+    });
 
-  expect(result.output.join('')).toMatch(`[SUCCESS] Write addresses json`);
-  expect(result.status).toBe(0);
+    expect(generateApiResult.output.join('')).toMatch(
+      `[SUCCESS] Write addresses json`
+    );
+    expect(generateApiResult.status).toBe(0);
 
-  const paths = await fastGlob('**/*.json', {
-    cwd: outputDir,
-  });
+    const paths = await fastGlob('**/*.json', {
+      cwd: outputDir,
+    });
 
-  expect(paths.length).toBeGreaterThan(0);
-}, 60000);
+    expect(paths.length).toBeGreaterThan(0);
 
-test('minify', () => {
-  const result = runAdg(['minify']);
+    const minifyResult = runAdg(['minify', `output/**/*.json`], {
+      maxBuffer: 1024 * 1024 * 10,
+    });
 
-  expect(result.status).toBe(1);
-  expect(result.stderr).toMatch('not implemented.');
-});
+    expect(minifyResult.output.join('')).toMatch('[SUCCESS] Minify');
+    expect(minifyResult.status).toBe(0);
+  },
+  60000 * 5
+);
 
 function runAdg(
   args: string[] = [],
