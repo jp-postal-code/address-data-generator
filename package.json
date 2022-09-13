@@ -8,6 +8,7 @@
     "access": "public",
     "tag": "next"
   },
+  "type": "commonjs",
   "bin": {
     "adg": "bin/adg.js"
   },
@@ -19,6 +20,7 @@
     "postbuild": "node -r @swc-node/register ./scripts/postbuild.ts",
     "type-check": "tsc",
     "test": "jest",
+    "pree2e": "yarn build",
     "e2e": "jest -c jest-e2e.config.js",
     "lint": "eslint . --ext ts --ext tsx --ext js",
     "lint:fix": "yarn lint --fix",
@@ -26,8 +28,14 @@
     "prepare": "husky install"
   },
   "dependencies": {
+    "@supercharge/promise-pool": "^2.3.2",
     "commander": "9.4.0",
-    "fast-glob": "3.2.12"
+    "csv-parse": "^5.3.0",
+    "fast-glob": "3.2.12",
+    "iconv-lite": "^0.6.3",
+    "jszip": "^3.10.1",
+    "listr2": "^5.0.5",
+    "progress": "^2.0.3"
   },
   "devDependencies": {
     "@commitlint/cli": "17.1.2",
@@ -39,6 +47,7 @@
     "@swc/jest": "0.2.22",
     "@types/jest": "29.0.1",
     "@types/node": "18.7.16",
+    "@types/progress": "^2.0.5",
     "@types/react": "18.0.19",
     "@typescript-eslint/eslint-plugin": "5.36.2",
     "@typescript-eslint/parser": "5.36.2",

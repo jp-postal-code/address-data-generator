@@ -1,8 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`show help and exit code 1 1`] = `
-"warning package.json: License should be a valid SPDX license expression
-Usage: adg [options] [command]
+"Usage: adg [options] [command]
 
 Options:
   -h, --help      display help for command
