@@ -1,7 +1,7 @@
 {
   "name": "@jp-postal-code/address-data-generator",
   "description": "Generate japan address data",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "repository": "git@github.com:jp-postal-code/address-data-generator.git",
   "publishConfig": {
     "registry": "https://registry.npmjs.org",

@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.1.2](https://github.com/jp-postal-code/address-data-generator/compare/address-data-generator-v0.1.1...address-data-generator-v0.1.2) (2022-09-13)
+
+
+### Bug Fixes
+
+* **deps:** pin dependencies ([#35](https://github.com/jp-postal-code/address-data-generator/issues/35)) ([fa06252](https://github.com/jp-postal-code/address-data-generator/commit/fa062526893abb7f32def2594d2dcf76d12d1e5d))
+
 ## [0.1.1](https://github.com/jp-postal-code/address-data-generator/compare/address-data-generator-v0.1.0...address-data-generator-v0.1.1) (2022-09-13)
 
 
