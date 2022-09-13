@@ -8,9 +8,7 @@ module.exports = {
   testPathIgnorePatterns: ['/__tests__/'],
   watchPathIgnorePatterns: ['/dist/'],
   clearMocks: true,
-  collectCoverage: true,
-  coverageDirectory: 'coverage',
-  coverageProvider: 'v8',
+  collectCoverage: false,
   transform: {
     '^.+\\.(t|j)sx?$': ['@swc/jest'],
   },
