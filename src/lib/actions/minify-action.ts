@@ -4,6 +4,8 @@ import { Action } from '../types/action';
 import { Listr } from 'listr2';
 import fastGlob from 'fast-glob';
 import { minify } from '../minify/minify';
+import { Observable } from 'rxjs';
+import { map, throttleTime } from 'rxjs/operators';
 
 export const minifyAction: Action<[string]> = async (glob) => {
   const tasks = createListr({
@@ -28,20 +30,33 @@ function createListr(context: Context): Listr<Context> {
       },
       {
         title: 'Minify',
-        async task({ paths }, task) {
+        task({ paths }, task) {
           if (paths == null || paths.length === 0) {
             task.skip('Skip because file not found.');
             return;
           }
 
-          let completedCount = 0;
-          await minify({
-            paths,
-            onMinified() {
-              ++completedCount;
-              task.output = `${completedCount}/${paths.length}`;
-            },
-          });
+          return new Observable((observer) => {
+            (async () => {
+              try {
+                await minify({
+                  paths,
+                  onMinified() {
+                    observer.next();
+                  },
+                });
+                observer.complete();
+              } catch (error) {
+                observer.error(error);
+              }
+            })();
+          }).pipe(
+            map((_, i) => {
+              const percent = (i / paths.length) * 100;
+              return `${i}/${paths.length} ${percent.toFixed(1)}%`;
+            }),
+            throttleTime(1000)
+          );
         },
       },
     ],
