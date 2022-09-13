@@ -8,7 +8,7 @@ Options:
 
 Commands:
   generate
-  minify
+  minify <glob>
   help [command]  display help for command
 error Command failed with exit code 1.
 "

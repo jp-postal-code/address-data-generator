@@ -1,10 +1,10 @@
 import { minifyAction } from '@/lib/actions/minify-action';
-import { Command } from 'commander';
+import { Argument, Command } from 'commander';
 
 export function createMinifyCommand() {
   const command = new Command('minify');
 
-  command.action(minifyAction);
+  command.addArgument(new Argument('glob')).action(minifyAction);
 
   return command;
 }
