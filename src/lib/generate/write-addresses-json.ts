@@ -4,11 +4,20 @@ import { writeJsonFile } from '../utils/write-json-file';
 import { dirname, join } from 'path';
 import { mkdir } from 'fs/promises';
 
-export async function writeAddressesJson(
-  postalCodeAddressesMap: Map<string, Address[]>,
-  distPath: string,
-  pretty: boolean
-): Promise<void> {
+interface Params {
+  postalCodeAddressesMap: Map<string, Address[]>;
+  distPath: string;
+  pretty: boolean;
+
+  onOutput?(path: string): void;
+}
+
+export async function writeAddressesJson({
+  postalCodeAddressesMap,
+  distPath,
+  pretty,
+  onOutput,
+}: Params): Promise<void> {
   await PromisePool.for([...postalCodeAddressesMap.entries()])
     .withConcurrency(50)
     .handleError((error) => {
@@ -24,5 +33,7 @@ export async function writeAddressesJson(
       await mkdir(dirname(outputPath), { recursive: true });
 
       await writeJsonFile(outputPath, addresses, pretty);
+
+      onOutput?.(outputPath);
     });
 }
