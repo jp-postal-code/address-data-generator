@@ -7,6 +7,8 @@ import { Address } from '@/lib/types/address';
 import { makeTempDir } from '@/lib/utils/make-temp-dir';
 import { unzip } from '@/lib/utils/unzip';
 import { rm } from 'fs/promises';
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-ignore
 import { Listr } from 'listr2';
 import { join } from 'path';
 import { Action } from '../../types/action';
