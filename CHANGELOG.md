@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.1.1](https://github.com/jp-postal-code/address-data-generator/compare/address-data-generator-v0.1.0...address-data-generator-v0.1.1) (2022-09-13)
+
+
+### Performance Improvements
+
+* output を間引くように変更 ([#32](https://github.com/jp-postal-code/address-data-generator/issues/32)) ([be27f73](https://github.com/jp-postal-code/address-data-generator/commit/be27f7318a046c09ec3d146a531e245e12250587))
+
 ## 0.1.0 (2022-09-13)
 
 
