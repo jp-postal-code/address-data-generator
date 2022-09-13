@@ -26,7 +26,7 @@ test('download ken all', async () => {
 
   // zip のヘッダーと一致するべき
   expect(buffer.readUInt32LE()).toBe(0x04034b50);
-});
+}, 30000);
 
 test('throws error if status code is not 200', async () => {
   jest.spyOn(https, 'get').mockImplementation(((
