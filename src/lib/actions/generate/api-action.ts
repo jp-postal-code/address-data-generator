@@ -12,6 +12,8 @@ import { rm } from 'fs/promises';
 import { Listr } from 'listr2';
 import { join } from 'path';
 import { Action } from '../../types/action';
+import { Observable } from 'rxjs';
+import { map, throttleTime } from 'rxjs/operators';
 
 interface Options {
   pretty: boolean;
@@ -79,22 +81,37 @@ function createListr(context: Context): Listr<Context> {
       },
       {
         title: 'Write addresses json',
-        async task({ postalCodeAddressesMap, distPath, pretty }, task) {
+        task({ postalCodeAddressesMap, distPath, pretty }, task) {
           if (postalCodeAddressesMap == null) {
             task.skip();
             return;
           }
 
-          let completedCount = 0;
-          await writeAddressesJson({
-            postalCodeAddressesMap,
-            distPath,
-            pretty,
-            onOutput() {
-              ++completedCount;
-              task.output = `${completedCount}/${postalCodeAddressesMap.size}`;
-            },
-          });
+          return new Observable((observer) => {
+            (async () => {
+              try {
+                await writeAddressesJson({
+                  postalCodeAddressesMap,
+                  distPath,
+                  pretty,
+                  onOutput() {
+                    observer.next();
+                  },
+                });
+                observer.complete();
+              } catch (error) {
+                observer.error(error);
+              }
+            })();
+          }).pipe(
+            map((_, i) => {
+              const percent = (i / postalCodeAddressesMap.size) * 100;
+              return `${i}/${postalCodeAddressesMap.size} ${percent.toFixed(
+                1
+              )}%`;
+            }),
+            throttleTime(1000)
+          );
         },
       },
     ],
