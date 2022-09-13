@@ -78,8 +78,6 @@ jobs:
       - name: Install node_modules
         run: yarn --check-files --frozen-lockfile --non-interactive
       - name: Build
-        env:
-          RUST_BACKTRACE: full
         run: |
           yarn type-check
           yarn build
