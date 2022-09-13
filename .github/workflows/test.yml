@@ -43,6 +43,8 @@ jobs:
         run: yarn --check-files --frozen-lockfile --non-interactive
       - name: Test
         run: yarn test
+      - name: Upload coverage to Codecov
+        uses: codecov/codecov-action@v3
 
   e2e:
     runs-on: ubuntu-latest
