@@ -5,8 +5,7 @@
   "repository": "git@github.com:jp-postal-code/address-data-generator.git",
   "publishConfig": {
     "registry": "https://registry.npmjs.org",
-    "access": "public",
-    "tag": "next"
+    "access": "public"
   },
   "type": "commonjs",
   "bin": {

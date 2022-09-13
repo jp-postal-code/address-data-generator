@@ -14,3 +14,24 @@ jobs:
       - uses: google-github-actions/release-please-action@v3
         with:
           command: manifest
+      - uses: actions/checkout@v3
+        if: ${{ steps.release.outputs.release_created }}
+      - name: Use Node.js
+        uses: actions/setup-node@v3
+        if: ${{ steps.release.outputs.release_created }}
+        with:
+          node-version: 16
+          cache: 'yarn'
+          registry-url: 'https://registry.npmjs.org'
+      - name: Install node_modules
+        if: ${{ steps.release.outputs.release_created }}
+        run: yarn --check-files --frozen-lockfile --non-interactive
+      - name: Build
+        if: ${{ steps.release.outputs.release_created }}
+        run: yarn build
+      - name: Publish to npm
+        if: ${{ steps.release.outputs.release_created }}
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+        working-directory: ./dist
+        run: npm publish
