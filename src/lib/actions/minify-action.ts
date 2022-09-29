@@ -56,7 +56,9 @@ function createListr(context: Context): Listr<Context> {
               return `${i}/${paths.length} ${percent.toFixed(1)}%`;
             }),
             throttleTime(1000)
-          );
+            // FIXME RxJS のバージョン違いにより型定義に差異が出来てしまい型エラーが発生するので、一時的に any に型アサーション
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+          ) as any;
         },
       },
     ],
