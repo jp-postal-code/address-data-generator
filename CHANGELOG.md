@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.1.3](https://github.com/jp-postal-code/address-data-generator/compare/address-data-generator-v0.1.2...address-data-generator-v0.1.3) (2023-05-31)
+
+
+### Bug Fixes
+
+* **deps:** update dependency commander to v10 ([#43](https://github.com/jp-postal-code/address-data-generator/issues/43)) ([1a821ce](https://github.com/jp-postal-code/address-data-generator/commit/1a821ce013d8994ef3768f6ef49ea39022dd6e61))
+
 ## [0.1.2](https://github.com/jp-postal-code/address-data-generator/compare/address-data-generator-v0.1.1...address-data-generator-v0.1.2) (2022-09-13)
 
 
