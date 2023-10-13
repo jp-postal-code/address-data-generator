@@ -28,7 +28,7 @@
   },
   "dependencies": {
     "@supercharge/promise-pool": "2.4.0",
-    "commander": "10.0.1",
+    "commander": "11.1.0",
     "csv-parse": "5.4.0",
     "fast-glob": "3.3.1",
     "iconv-lite": "0.6.3",
