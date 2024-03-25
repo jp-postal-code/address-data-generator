@@ -898,10 +898,10 @@
   dependencies:
     "@sinonjs/commons" "^2.0.0"
 
-"@supercharge/promise-pool@2.4.0":
-  version "2.4.0"
-  resolved "https://registry.yarnpkg.com/@supercharge/promise-pool/-/promise-pool-2.4.0.tgz#6050eea8c2d7f92ddd4ddc582ee328b15c034ad3"
-  integrity sha512-O9CMipBlq5OObdt1uKJGIzm9cdjpPWfj+a+Zw9EgWKxaMNHKC7EU7X9taj3H0EGQNLOSq2jAcOa3EzxlfHsD6w==
+"@supercharge/promise-pool@3.2.0":
+  version "3.2.0"
+  resolved "https://registry.yarnpkg.com/@supercharge/promise-pool/-/promise-pool-3.2.0.tgz#a6ab4afdf798e453a6bb51c4ae340852e1266af8"
+  integrity sha512-pj0cAALblTZBPtMltWOlZTQSLT07jIaFNeM8TWoJD1cQMgDB9mcMlVMoetiB35OzNJpqQ2b+QEtwiR9f20mADg==
 
 "@swc-node/core@^1.10.4":
   version "1.10.4"
