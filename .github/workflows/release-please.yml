@@ -21,7 +21,7 @@ jobs:
         uses: actions/setup-node@v3
         if: ${{ steps.release.outputs.releases_created }}
         with:
-          node-version: 16
+          node-version: 22
           cache: 'yarn'
           registry-url: 'https://registry.npmjs.org'
       - name: Install node_modules
